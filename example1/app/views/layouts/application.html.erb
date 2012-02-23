@@ -1,0 +1,69 @@
+</body>
+</html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Store</title>
+<%= csrf_meta_tag %>
+
+<!--
+	Note: T
+	-->
+
+<!-- 
+	These system styles are automatically included, but are useful here for testing on a local machine 
+-->
+<link title="main" rel="stylesheet" href="http://resource.fastspring.com/app/s/style/base.css" media="screen,projection" type="text/css" />
+<link title="main" rel="stylesheet" href="http://resource.fastspring.com/app/store/style/base.css" media="screen,projection" type="text/css" />
+
+<!-- 
+	Custom style
+-->
+<%= stylesheet_link_tag 'style' %>
+
+</head>
+
+<!-- 
+	Note: No attributes should appear on the body tag.  They will be ignored.  Use CSS to style the body.
+-->
+<body> 
+<div id="header">
+	<ul id="menu">
+		<li><a href="#" accesskey="1" title="">Home</a></li>
+		<li><a href="#" accesskey="2" title="">Products</a></li>
+		<li><a href="#" accesskey="3" title="">Information</a></li>
+		<li><a href="#" accesskey="4" title="">About</a></li>
+		<li><a href="#" accesskey="5" title="">Contact</a></li>
+	</ul>
+</div>
+<div id="content">
+	<div id="colOne">
+		<div id="logo">
+			<h1><a href="#">Store</a></h1>
+		</div>
+		<div class="box">
+			<h3>Subscription Pages</h3>
+			<ul class="bottom">
+				<li class="first"><a href="/pages/billing">Subscription Page</a></li>
+			</ul>
+		</div>
+		<div class="box">
+			<h3>Mauris cras libero</h3>
+			<ul class="bottom">
+				<li class="first"><a href="#">Sed accumsan congue</a></li>
+				<li><a href="#">Nulla dignissim nec augue</a></li>
+				<li><a href="#">Nunc ante elit nulla</a></li>
+				<li><a href="#">Aliquam suscipit consequat</a></li>
+				<li><a href="#">Cursus sed arcu sed</a></li>
+				<li><a href="#">Nulla dignissim nec augue</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="colTwo" style="padding-bottom: 20px">
+		<%= yield %>
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright &#169; Sitename.com. All rights reserved. Design by <a href="http://freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+</body>
+</html>

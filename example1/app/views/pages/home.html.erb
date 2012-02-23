@@ -1,0 +1,55 @@
+		<h2>Homepage</h2>
+	
+		<p style="text-align:left">
+			This is an example web application that will demonstrate how into integrate into
+			FastSpring's Subscription API.
+		</p>
+		
+		<p style="text-align:left">
+			You are currently simulated to be logged in with customer_ref = <%= @user.id %>.
+			This number will be passed to FastSpring and after the payment is processed the number will be passed
+			back to the activate method in the PagesController controller.
+		</p>
+		
+		<p style="text-align:left">
+			Click on the Subscription Page link on the left nav to see the FastSpring subscription service in action.
+		</p>
+
+		<h2>Configuration</h2>
+
+		<h3>FastSpring Store</h3>
+		
+		<p style="text-align:left">
+			Your FastSpring store needs to be configured in order to use this example. The following items need to be
+			in configured:
+		</p>
+		
+		<p>
+			<ul>
+				<li>A subscription product</li>
+				<li>Subscription Activated Notification</li>
+				<li>Subscription Deactivated Notification</li>
+			</ul>
+		</p>
+		
+		<h3>Web Application</h3>
+		
+		<p style="text-align:left">
+			You need to modify the values in PagesController.init_store to match your store's settings:
+		</p>
+		
+		<p>
+			<ul>
+				<li>store_id</li>
+				<li>api_username</li>
+				<li>api_password</li>
+				<li>test_mode</li>
+				<li>product_id</li>
+			</ul>
+		</p>
+		
+		<p style="text-align:left">
+			You also need to set the privateKey variable in PageController.activate and PageController.deactivate. This private key
+			needs to match the private key in the Security tab of the Subscription Activated Notification
+			and Subscription Deactivated Notification respectively.
+		</p>

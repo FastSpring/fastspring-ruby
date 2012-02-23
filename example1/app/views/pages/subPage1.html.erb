@@ -1,0 +1,144 @@
+		<h2>Subscription Page</h2>
+	
+		<p style="text-align:left">
+			This is an example of how to implement a subscription page using FastSpring API.
+			Below you will see examples for the available APIs.  
+		</p>
+
+		<h3>Subscription Info</h3>
+		
+		<h4>Using the FastSpring.get_subscription API</h4>
+		
+<%
+	if @getSub
+%>
+		<p>
+			<ul>
+				<li>status: <%= @getSub.status %></li>
+				<li>statusChanged: <%= @getSub.status_changed.nil? ? "" : @getSub.status_changed.strftime("%Y-%m-%e %H:%M:%S") %></li>
+				<li>statusReason: <%= @getSub.status_reason %></li>
+				<li>cancelable: <%= @getSub.cancelable %></li>
+				<li>reference: <%= @getSub.reference %></li>
+				<li>test: <%= @getSub.test %></li>
+				<li>customer firstName: <%= @getSub.customer.first_name %></li>
+				<li>customer lastName: <%= @getSub.customer.last_name %></li>
+				<li>customer company: <%= @getSub.customer.company %></li>
+				<li>customer email: <%= @getSub.customer.email %></li>
+				<li>customer phoneNumber: <%= @getSub.customer.phone_number %></li>
+				<li>customerUrl: <%= @getSub.customer_url %></li>
+				<li>productName: <%= @getSub.product_name %></li>
+				<li>tags: <%= @getSub.tags %></li>
+				<li>quantity: <%= @getSub.quantity %></li>
+				<li>nextPeriodDate: <%= @getSub.next_period_date.nil? ? "" : @getSub.next_period_date.strftime("%Y-%m-%e %H:%M:%S") %></li>
+				<li>end: <%= @getSub.end_date.nil? ? "" : @getSub.end_date.strftime("%Y-%m-%e %H:%M:%S") %></li>
+			</ul>
+		</p>
+<%
+	elsif @getEx
+%>
+		<p style="font-weight: bold">
+			There was an error getting the subscription.
+			
+			<ul>
+				<li>http status code: <%= @getEx.http_status_code %></li>
+				<li>error code: <%= @getEx.error_code %></li>
+			</ul>
+		</p>
+<%
+	end 
+%>
+		
+		<h3>Update Subscription</h3>
+		
+		<h4>Using the FastSpring.update_subscription API</h4>
+		
+		<p>
+			<form method="post">
+				<div class="formRow"><span class="formLabel">Product Path:</span><span class="formInput"><input type="text" name="productPath" value=""/></span></div>
+				<div class="formRow"><span class="formLabel">Tags:</span><span class="formInput"><input type="text" name="tags" value="<%= @getSub.tags%>"/></span></div>
+				<div class="formRow"><span class="formLabel">Quantity:</span><span class="formInput"><input type="text" name="quantity" value="<%= @getSub.quantity%>"/></span></div>
+				<div class="formRow"><span class="formLabel">Coupon:</span><span class="formInput"><input type="text" name="coupon" value=""/></span></div>
+				<div class="formRow"><span class="formLabel">No End Date:</span><span class="formInput"><input type="checkbox" name="noenddate" value="noenddate"/></span></div>
+				<div class="formRow"><span class="formLabel">Proration:</span><span class="formInput"><input type="checkbox" name="proration" value="proration"/></span></div>
+				<div class="formRow"><input type="submit" name="update" value="Update Subscription"/></div>
+			</form>
+		</p>
+		
+<%
+	if @updateSub
+%>
+		<p style="font-weight: bold">
+			The update request was successful.
+		</p>
+<%
+	elsif @updateEx
+%>
+		<p style="font-weight: bold">
+			The update request has the following results:
+			<ul>
+				<li>http status code: <%= @updateEx.http_status_code %></li>
+				<li>error code: <%= @updateEx.error_code %></li>
+			</ul>
+		</p>
+<%
+	end
+%>
+
+		<h3>Cancel Subscription</h3>
+		
+		<h4>Using the FastSpring.cancel_subscription API</h4>
+		
+		<p>
+			<form method="post">
+				<div class="formRow"><input type="submit" name="cancel" value="Cancel Subscription"/></div>
+			</form>
+		</p>
+<%
+	if @cancelSub
+%>
+		<p style="font-weight: bold">
+			The cancel request was successful.
+		</p>
+<%
+	elsif @cancelEx
+%>
+		<p style="font-weight: bold">
+			The cancel request has the following results:
+			<ul>
+				<li>http status code: <%= @cancelEx.http_status_code %></li>
+				<li>error code: <%= @cancelEx.error_code %></li>
+			</ul>
+		</p>
+<% 
+	end
+%>
+		<h3>Renew Subscription</h3>
+		
+		<h4>Using the FastSpring.renew_subscription API</h4>
+		
+		<p>
+			<form method="post">
+				<div class="formRow"><input type="submit" name="renew" value="Renew Subscription"/></div>
+			</form>
+		</p>
+<%
+	if params.has_key?(:renew)
+		if @renewEx.nil?
+%>
+		<p style="font-weight: bold">
+			The renew request was successful.
+		</p>
+<% 
+		else
+%>
+		<p style="font-weight: bold">
+			The renew request has the following results:
+			<ul>
+				<li>http status code: <%= @renewEx.http_status_code %></li>
+				<li>error code: <%= @renewEx.error_code %></li>
+			</ul>
+		</p>
+<% 
+		end
+	end
+%>

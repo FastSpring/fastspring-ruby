@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html charset=utf-8">
+<title>Documentation FastSpring Subscription API for RoR</title>
+</head>
+<body>
+
+# About FastSpring #
+[FastSpring](http://www.fastspring.com) offers an innovative e-commerce engine designed to overcome ease of use, customer service, and cost issues that have plagued software e-commerce companies. We employ a customer-driven, iterative and collaborative Agile development process.
+
+# About FastSpring Subscription API for RoR #
+
+The FastSpring Subscription API for RoR allows for easy integration with FastSpring's subscription services. There is a example web application to demonstrate
+the usage of the API. All source code is released under the [MIT license](License.txt). It is open to contributions and its use is unrestricted.
+
+# How-to integrate
+
+Read our **[Integration Guide](https://support.fastspring.com/entries/238642-integration-overview)** for information on integrating your RoR application with FastSpring's subscription service.
+
+
+# FastSpring API for RoR #
+
+## Introduction ##
+
+FastSpring's Subscription API for RoR provides an interface for integrating RoR applications with FastSpring's subscription services.  It provides
+the necessary CRUD operations needed to manage subscriptions.
+
+## Class Library ##
+
+The FastSpring Subscription API class library provides the CRUD operations in a single class called FastSpring. This class and other classes
+used to pass the data in and out of the APIs are described below.
+
+	class FastSpring
+		def test_mode=
+		def test_mode?
+		
+		def initialize(store_id, api_username, api_password)
+		
+		def create_subscription(product_ref, referrer)
+		
+		def get_subscription(subscription_ref)
+		
+		def update_subscription(subscription_update)
+		
+		def cancel_subscription(subscription_ref)
+		
+		def renew_subscription(subscription_ref)
+
+## How-to add the FastSpring Subscription API to your RoR application ##
+
+To start using the FastSpring Subscription API in your RoR application, build and install the FastSpring gem:
+
+	1. gem build FastSpring.gemspec
+	
+	2. sudo gem install FastSpring-0.1.0.gem
+	
+Then add the following lines to your RoR Gemfile
+
+	gem 'httparty'
+	gem 'FastSpring'
+	
+Then you instantiate a new FastSpring object with the parameters that match your store's setup.
+
+* store_id
+* api_username
+* api_password
+
+### Example ###
+
+	@fastspring = FastSpring.new("your_store_id", "your_api_username", "your_api_password")
+
+
+### class FsprgSubscription ###
+	@status
+	@status_changed
+	@status_reason
+	@cancelable
+	@reference
+	@test
+	@customer
+	@customer_url
+	@product_name
+	@tags
+	@quantity
+	@next_period_date
+	@end_date
+
+
+### class FsprgCustomer ###
+	@first_name
+	@last_name
+	@company
+	@email
+	@phone_number
+	
+
+### class FsprgSubscriptionUpdate ###
+	def initialize(subscription_ref)
+	
+	@reference
+	@product_path
+	@quantity
+	@tags
+	@no_end_date
+	@coupon
+	@proration
+
+
+### class FsprgException ###
+	@http_status_code
+	@error_code
+
+
+
+
+## Example1 RoR Application ##
+
+Demonstrates the usage of the FastSpring Subscription API in a simple web application that has a subscription page.
+You will need to have an existing FastSpring store configured for subscriptions.  The following needs to be 
+configured in order to use this example:
+
+* A subscription product
+* Subscription Activated Notification
+* Subscription Deactivated Notification
+
+You need to modify pages_controller.rb to modify the following values to match your store's settings:
+
+* store_id
+* api_username
+* api_password
+* test_mode
+* product_ref
+
+You also need to set the privateKey variable in the activate and deactivate methods. This private key
+needs to match the private key in the Security tab of the Subscription Activated Notification
+and Subscription Deactivated Notification respectively.
+
+
+</body></html>
