@@ -18,8 +18,9 @@ class FastSpring
   end
   
   def create_subscription(product_ref, referrer, order_type=:detail)
+    protocols = {:detail => "http", :short => "https"}
     order_types = {:detail => "product", :short => "instant"}
-    url = "https://sites.fastspring.com/#{@store_id}/#{order_types[order_type]}/#{product_ref}?referrer=#{referrer}"
+    url = "#{protocols[order_type]}://sites.fastspring.com/#{@store_id}/#{order_types[order_type]}/#{product_ref}?referrer=#{referrer}"
     url = add_test_mode(url)
   end
   
