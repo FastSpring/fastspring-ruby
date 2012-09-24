@@ -36,7 +36,7 @@ used to pass the data in and out of the APIs are described below.
 		
 		def initialize(store_id, api_username, api_password)
 		
-		def create_subscription(product_ref, referrer)
+		def create_subscription(product_ref, referrer, order_type=:detail)
 		
 		def get_subscription(subscription_ref)
 		
