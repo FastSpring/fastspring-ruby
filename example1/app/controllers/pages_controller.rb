@@ -80,7 +80,7 @@ class PagesController < ApplicationController
         if act_user.subscription.nil?
           act_user.subscription = Subscription.create(:reference => subscription_ref)
         end
-      rescue ActiveRecord::RecordNotFound:
+      rescue ActiveRecord::RecordNotFound
         logger.error { "User was not found" }
       end
     end
@@ -97,7 +97,7 @@ class PagesController < ApplicationController
         act_user = User.find(customer_ref)
         
         act_user.subscription.delete
-      rescue ActiveRecord::RecordNotFound:
+      rescue ActiveRecord::RecordNotFound
         logger.error { "User was not found" }
       end
     end
