@@ -2,19 +2,13 @@ require 'httparty' unless defined?(HTTParty)
 require 'active_support/builder' unless defined?(Builder)
 
 class FastSpring
-  @test_mode = false
-  
-  def test_mode?
-    @test_mode
-  end
-  
-  def test_mode=(mode)
-    @test_mode = true
-  end
+
+  attr_accessor :test_mode
   
   def initialize(store_id, api_username, api_password)
     @auth = { :username => api_username, :password => api_password }
     @store_id = store_id
+    @test_mode = false
   end
   
   def create_subscription(product_ref, referrer, order_type=:detail)
