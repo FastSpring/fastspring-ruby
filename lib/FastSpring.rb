@@ -77,6 +77,22 @@ class FastSpring
       raise exception, "An error occurred calling the FastSpring subscription service", caller
     end
   end
+
+  def generate_coupon(prefix)
+    url = "https://api.fastspring.com/company/#{@store_id}/coupon/#{prefix}/generate"
+    url = add_test_mode(url)
+    options = { :headers => { 'Content-Type' => 'application/xml' }, :basic_auth => @auth }
+    response = HTTParty.post(url, options)
+    
+    if response.code == 200
+      coupon_code = response.parsed_response.fetch('couponCode')
+      return coupon_code.try(:fetch, 'code', nil)
+    else
+      exception = FsprgException.new(response.code, nil)
+      raise exception, "An error occurred calling the FastSpring coupon generator", caller
+    end
+
+  end
   
   private
   
