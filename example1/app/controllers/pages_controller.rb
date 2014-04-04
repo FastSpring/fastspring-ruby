@@ -123,7 +123,7 @@ class PagesController < ApplicationController
   
   private
     def init_store
-      @fastspring = FastSpring.new('your_store_id', 'your_api_username', 'your_api_password')
+      @fastspring = FastSpring.new('your_store_id', 'your_api_username', 'your_api_password', 'your_company_id')
       
       @fastspring.test_mode = true
       
