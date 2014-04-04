@@ -5,9 +5,10 @@ class FastSpring
 
   attr_accessor :test_mode
   
-  def initialize(store_id, api_username, api_password)
+  def initialize(store_id, api_username, api_password, company_id = nil)
     @auth = { :username => api_username, :password => api_password }
     @store_id = store_id
+    @company_id = company_id || store_id
     @test_mode = false
   end
   
@@ -79,7 +80,7 @@ class FastSpring
   end
 
   def generate_coupon(prefix)
-    url = "https://api.fastspring.com/company/#{@store_id}/coupon/#{prefix}/generate"
+    url = "https://api.fastspring.com/company/#{@company_id}/coupon/#{prefix}/generate"
     url = add_test_mode(url)
     options = { :headers => { 'Content-Type' => 'application/xml' }, :basic_auth => @auth }
     response = HTTParty.post(url, options)
@@ -97,7 +98,7 @@ class FastSpring
   private
   
   def subscription_url(reference, *options)
-    url = "https://api.fastspring.com/company/#{@store_id}/subscription/#{reference}"
+    url = "https://api.fastspring.com/company/#{@company_id}/subscription/#{reference}"
     
     unless options.nil? || options.length == 0
       opt = options[0]
