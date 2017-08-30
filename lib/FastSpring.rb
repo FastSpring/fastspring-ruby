@@ -28,7 +28,7 @@ class FastSpring
     if response.code == 200
       sub = parse_subscription(response.parsed_response.fetch('subscription'))
     else
-      exception = FsprgException.new(response.code, nil)
+      exception = FsprgException.new(response.code, response.parsed_response)
       raise exception, "An error occurred calling the FastSpring subscription service", caller
     end
     
@@ -44,7 +44,7 @@ class FastSpring
     if response.code == 200
       sub = parse_subscription(response.parsed_response.fetch('subscription'))
     else
-      exception = FsprgException.new(response.code, nil)
+      exception = FsprgException.new(response.code, response.parsed_response)
       raise exception, "An error occurred calling the FastSpring subscription service", caller
     end
     
@@ -60,7 +60,7 @@ class FastSpring
     if response.code == 200
       sub = parse_subscription(response.parsed_response.fetch('subscription'))
     else
-      exception = FsprgException.new(response.code, nil)
+      exception = FsprgException.new(response.code, response.parsed_response)
       raise exception, "An error occurred calling the FastSpring subscription service", caller
     end
     
