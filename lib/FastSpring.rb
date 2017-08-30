@@ -36,7 +36,6 @@ class FastSpring
   end
   
   def update_subscription(subscription_update)
-    byebug
     url = subscription_url(subscription_update.reference)
     
     options = { :headers => { 'Content-Type' => 'application/xml' }, :body => subscription_update.to_xml, :basic_auth => @auth }
